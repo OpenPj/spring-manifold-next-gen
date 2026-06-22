@@ -102,6 +102,13 @@ Start the Spring Boot runtime application:
 mvn spring-boot:run -pl sm-runtime -Dspring-boot.run.profiles=dev
 ```
 
+##### Running a Sample Ingestion Job on Startup (Optional)
+By default, the automatic startup crawl is disabled to prevent unnecessary scans. To trigger a demo crawl job on startup, pass the configuration properties:
+```bash
+mvn spring-boot:run -pl sm-runtime -Dspring-boot.run.profiles=dev \
+  -Dspring-boot.run.arguments="--spring.manifold.crawl-on-startup=true --spring.manifold.scan-path=/your/local/directory/to/scan"
+```
+
 #### 5. Run the Admin UI
 To launch the administration dashboard:
 ```bash
