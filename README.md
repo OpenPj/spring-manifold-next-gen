@@ -28,22 +28,27 @@ graph TD
         Runtime[Bootstrap - sm-runtime]
         FS_Conn[Filesystem Repository - sm-filesystem-repository-connector]
         Vec_Conn[Vector Output - sm-vector-output-connector]
+        Kafka_Cons[Ingestion Consumer - IngestionConsumer]
         
         Runtime --> Core
         Core --> FS_Conn
-        Core --> Vec_Conn
+        Core -->|Publish IngestionMessage| Kafka[(Kafka Topic: manifold-documents)]
+        Kafka -->|Consume Reference| Kafka_Cons
+        Kafka_Cons -->|Resolve Content & Process| Vec_Conn
     end
 
     subgraph Infrastructure [Docker Containers]
         PG[(PostgreSQL + pgvector)]
         Redis[(Redis Cache & Session)]
         Ollama[Ollama AI Embeddings]
+        Kafka_Broker[Apache Kafka Broker]
     end
 
     UI_App -->|REST API| Runtime
-    Runtime -->|Metadata & Vectors| PG
+    Vec_Conn -->|Vectors| PG
     Runtime -->|Job Cache| Redis
-    Runtime -->|Generates Embeddings| Ollama
+    Vec_Conn -->|Generates Embeddings| Ollama
+    Kafka --> Kafka_Broker
 ```
 
 ---
@@ -52,6 +57,7 @@ graph TD
 
 - **Java 25 Preview Features**: Structured Concurrency, Virtual Threads, and Pattern Matching.
 - **Spring Boot & Spring AI**: High-performance backend orchestrating ingestion jobs.
+- **Apache Kafka**: Decoupled, event-driven document processing using the **Claim Check Pattern**.
 - **pgvector**: High-dimensional vector similarity search in PostgreSQL.
 - **Redis Stack**: Lightweight caching and session management.
 - **Ollama**: Local AI embedding generation via open-source LLM models.
