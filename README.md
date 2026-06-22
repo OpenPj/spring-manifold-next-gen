@@ -1,5 +1,9 @@
 # Spring-Manifold Next-Gen
 
+<p align="center">
+  <img src="images/logo.png" alt="Spring-Manifold Next-Gen Logo" width="200" />
+</p>
+
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Java Version](https://img.shields.io/badge/Java-25-orange.svg)](https://jdk.java.net/25/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4+-green.svg)](https://spring.io/projects/spring-boot)
