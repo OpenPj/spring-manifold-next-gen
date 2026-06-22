@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.ai.vectorstore.pgvector.autoconfigure.PgVectorStoreAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.apache.manifoldcf.core.connector.RepositoryConnector;
 import org.apache.manifoldcf.core.connector.OutputConnector;
 import org.apache.manifoldcf.runtime.orchestrator.JobOrchestrator;
@@ -20,6 +21,7 @@ public class SpringManifoldNextGenApplication {
     private static final Logger log = LoggerFactory.getLogger(SpringManifoldNextGenApplication.class);
 
     @Bean
+    @Profile("!test")
     public CommandLineRunner runSampleJob(
             JobOrchestrator orchestrator,
             RepositoryConnector repositoryConnector,

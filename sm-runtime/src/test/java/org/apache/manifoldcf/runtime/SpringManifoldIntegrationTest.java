@@ -7,6 +7,7 @@ import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.apache.manifoldcf.core.connector.OutputConnector;
 import org.apache.manifoldcf.core.connector.RepositoryConnector;
 import org.apache.manifoldcf.runtime.orchestrator.JobOrchestrator;
@@ -21,6 +22,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class SpringManifoldIntegrationTest {
 
     private static final Logger log = LoggerFactory.getLogger(SpringManifoldIntegrationTest.class);

@@ -40,6 +40,7 @@ spring:
         username: manifold
         password: manifold_password
         initialize-schema: true
+        dimensions: 1024
 
   batch:
     jdbc:

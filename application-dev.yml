@@ -41,6 +41,7 @@ spring:
         password: manifold_password
         driver-class-name: org.postgresql.Driver
         initialize-schema: true
+        dimensions: 1024
 
   batch:
     jdbc:
