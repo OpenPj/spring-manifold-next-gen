@@ -1,17 +1,16 @@
 package org.apache.manifoldcf.runtime;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.ai.vectorstore.pgvector.autoconfigure.PgVectorStoreAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
-import org.apache.manifoldcf.core.connector.RepositoryConnector;
 import org.apache.manifoldcf.core.connector.OutputConnector;
+import org.apache.manifoldcf.core.connector.RepositoryConnector;
 import org.apache.manifoldcf.runtime.orchestrator.JobOrchestrator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.ai.vectorstore.pgvector.autoconfigure.PgVectorStoreAutoConfiguration;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication(
     scanBasePackages = "org.apache.manifoldcf",
@@ -27,7 +26,8 @@ public class SpringManifoldNextGenApplication {
     @Value("${spring.manifold.scan-path:}")
     private String scanPath;
 
-    @Bean
+    @SuppressWarnings("unused")
+	@Bean
     @Profile("!test")
     public CommandLineRunner runSampleJob(
             JobOrchestrator orchestrator,

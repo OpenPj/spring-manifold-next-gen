@@ -46,10 +46,22 @@ services:
     networks:
       - spring-manifold-network
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:11434/api/tags || exit 1"]
+      test: ["CMD", "ollama", "list"]
       interval: 10s
       timeout: 5s
       retries: 3
+
+  ollama-model-puller:
+    image: ollama/ollama:0.23.4
+    container_name: ollama-model-puller
+    environment:
+      - OLLAMA_HOST=ollama:11434
+    networks:
+      - spring-manifold-network
+    depends_on:
+      ollama:
+        condition: service_healthy
+    command: pull mxbai-embed-large
 
   kafka:
     image: apache/kafka:3.7.0

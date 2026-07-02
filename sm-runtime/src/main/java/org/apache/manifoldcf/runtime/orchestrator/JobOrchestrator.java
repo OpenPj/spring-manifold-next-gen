@@ -25,7 +25,8 @@ public class JobOrchestrator {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void runJob(RepositoryConnector repositoryConnector, OutputConnector outputConnector, String path) {
+    @SuppressWarnings("preview")
+	public void runJob(RepositoryConnector repositoryConnector, OutputConnector outputConnector, String path) {
         log.info("Starting job for path: {}", path);
         
         try (var scope = StructuredTaskScope.open()) {
